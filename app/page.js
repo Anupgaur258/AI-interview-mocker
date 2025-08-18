@@ -63,20 +63,7 @@ export default function Home() {
                 />
               </svg>
             </a>
-            <a
-              href="https://youtu.be/Q5LM985yUmQ"
-              className="inline-flex items-center justify-center py-4 px-10 text-base font-semibold text-black bg-white border border-gray-200 rounded-xl shadow-lg hover:bg-gray-50 focus:ring-4 focus:ring-green-200 dark:text-white dark:bg-gray-800 dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-green-700 transition-all duration-300"
-            >
-              <svg
-                className="mr-2 w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-              </svg>
-              See It in Action
-            </a>
+            
           </div>
           <div className="mt-16 text-center">
             <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
