@@ -5,17 +5,26 @@ import InterviewList from './_components/InterviewList'
 
 function Dashboard() {
   return (
-    <div className='p-10'>
+    <div className="p-8 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-gray-900 dark:to-gray-800 font-sans min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h2 className="text-4xl font-extrabold text-orange-500 dark:text-orange-400">
+              Dashboard
+            </h2>
+            <h2 className="text-lg font-medium text-gray-700 dark:text-gray-200 mt-2">
+              Create and Start your AI Mockup Interview
+            </h2>
+          </div>
+          <UserButton />
+        </div>
 
-      <h2 className='font-bold text-3xl text-primary'>Dashboard</h2>
-      <h2 className='text-gray-500'>Create and Start your AI Mockup Interview</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 my-6 gap-6">
+          <AddNewInterview />
+        </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-3 my-5 gap-5'>
-        <AddNewInterview/>
+        <InterviewList />
       </div>
-
-      {/* Previous Interview List  */}
-      <InterviewList/>
     </div>
   )
 }
