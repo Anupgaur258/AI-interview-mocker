@@ -7,55 +7,51 @@ import { usePathname } from 'next/navigation'
 import React, { useEffect } from 'react'
 
 function Header() {
-    const path = usePathname()
+  const path = usePathname()
 
-    useEffect(() => {
-        console.log(path)
-    }, [path])
+  useEffect(() => {
+    console.log(path)
+  }, [path])
 
-    // Array of nav items for cleaner mapping
-    const navItems = [
-        { name: "Dashboard", href: "/dashboard" },
-        { name: "Questions", href: "/dashboard/questions" },
-        { name: "Upgrade", href: "/dashboard/upgrade" },
-        { name: "How it Works?", href: "/dashboard/how" },
-    ]
+  const navItems = [
+    { name: "Dashboard", href: "/dashboard" },
+    { name: "Questions", href: "/dashboard/questions" },
+    { name: "Upgrade", href: "/dashboard/upgrade" },
+    { name: "How it Works?", href: "/dashboard/how" },
+  ]
 
-    return (
-        <div className="flex p-4 items-center justify-between bg-secondary shadow-sm">
-            {/* Logo */}
-            <Link href="/dashboard">
-                <Image
-                    src="/logo.svg"
-                    alt="Company Logo"
-                    width={100}           // fixed width
-                    height={0}            // let height auto adjust
-                    style={{ height: "auto" }}
-                    priority
-                />
+  return (
+    <header className="fixed top-0 left-0 right-0 z-20 bg-white dark:bg-gray-900 shadow-md border-b border-green-500/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between font-sans">
+        <Link href="/dashboard" className="flex items-center gap-2">
+          <Image
+            src="/logo.svg"
+            alt="Company Logo"
+            width={24}
+            height={24}
+            priority
+          />
+          <span className="text-lg font-extrabold text-orange-500 dark:text-orange-400">AI Interview Mocker</span>
+        </Link>
+        <nav className="hidden md:flex items-center gap-6">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`text-base font-medium transition-all duration-300 ${
+                path === item.href
+                  ? 'text-orange-500 dark:text-orange-400 font-semibold'
+                  : 'text-black dark:text-white hover:text-orange-500 dark:hover:text-orange-400'
+              }`}
+            >
+              {item.name}
             </Link>
-
-            {/* Navigation */}
-            <ul className="hidden md:flex gap-6">
-                {navItems.map((item) => (
-                    <Link key={item.href} href={item.href}>
-                        <li
-                            className={`
-                                cursor-pointer
-                                hover:text-primary hover:font-bold transition-all
-                                ${path === item.href ? "text-primary font-bold" : ""}
-                            `}
-                        >
-                            {item.name}
-                        </li>
-                    </Link>
-                ))}
-            </ul>
-
-            {/* User Button */}
-            <UserButton />
-        </div>
-    )
+          ))}
+        </nav>
+        <UserButton />
+      </div>
+    </header>
+  )
 }
 
 export default Header
