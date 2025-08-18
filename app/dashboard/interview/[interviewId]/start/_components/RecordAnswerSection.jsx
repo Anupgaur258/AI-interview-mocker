@@ -27,7 +27,7 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
     stopSpeechToText,
     setResults
   } = useSpeechToText({
-    continuous: true,        // capture longer answers
+    continuous: true,
     useLegacyResults: false
   })
 
@@ -90,39 +90,56 @@ function RecordAnswerSection({ mockInterviewQuestion, activeQuestionIndex, inter
   }, [isRecording])
 
   return (
-    <div className='flex items-center justify-center flex-col'>
-      <div className='flex flex-col mt-10 justify-center items-center bg-black rounded-lg p-5 relative'>
-        <Image src='/webcam.png' width={200} height={200} className='absolute opacity-20' alt="webcam-overlay" />
+    <div className="flex items-center justify-center flex-col p-6 font-sans">
+      <div className="flex flex-col justify-center items-center bg-white dark:bg-gray-900 rounded-xl p-6 shadow-md relative">
+        <Image
+          src="/webcam.png"
+          width={200}
+          height={200}
+          className="absolute opacity-10"
+          alt="webcam-overlay"
+        />
         <Webcam
           mirrored
           audio
-          style={{ height: 400, width: 400, zIndex: 10, borderRadius: 10 }}
+          style={{ height: 400, width: 400, zIndex: 10, borderRadius: 12 }}
         />
       </div>
 
       <Button
         disabled={loading}
-        variant="default"
-        className={`my-8 text-lg px-6 py-3 ${isRecording ? "bg-red-500 hover:bg-red-600" : "bg-green-600 hover:bg-green-700"}`}
+        className={`my-6 text-lg px-8 py-3 rounded-xl shadow-md transition-all duration-300 ${
+          isRecording
+            ? 'bg-red-500 hover:bg-red-600 focus:ring-2 focus:ring-red-300 dark:focus:ring-red-900'
+            : 'bg-orange-500 hover:bg-orange-600 focus:ring-2 focus:ring-orange-300 dark:focus:ring-orange-900'
+        }`}
         onClick={StartStopRecording}
       >
         {isRecording ? (
-          <span className='flex items-center gap-2 text-white'>
-            <StopCircle /> Stop Recording
+          <span className="flex items-center gap-2 text-white">
+            <StopCircle className="h-5 w-5" /> Stop Recording
           </span>
         ) : (
-          <span className='flex items-center gap-2 text-white'>
-            <Mic /> Start Recording
+          <span className="flex items-center gap-2 text-white">
+            <Mic className="h-5 w-5" /> Start Recording
           </span>
         )}
       </Button>
 
-      <div className='w-full max-w-xl text-sm bg-gray-100 p-4 rounded-md shadow'>
-        <p className='text-gray-600 mb-2'>🗣️ <strong>Your Answer:</strong></p>
-        <p>{userAnswer || "Nothing recorded yet..."}</p>
+      <div className="w-full max-w-xl text-sm bg-green-50 dark:bg-green-900/20 p-5 rounded-xl shadow-md border border-green-500/20">
+        <p className="text-green-600 dark:text-green-400 font-semibold mb-2">
+          🗣️ Your Answer:
+        </p>
+        <p className="text-black dark:text-white">
+          {userAnswer || "Nothing recorded yet..."}
+        </p>
       </div>
 
-      {error && <div className='mt-4 text-red-600 font-medium'>Error: {error.message}</div>}
+      {error && (
+        <div className="mt-4 text-red-600 dark:text-red-400 font-medium">
+          Error: {error.message}
+        </div>
+      )}
     </div>
   )
 }
