@@ -93,59 +93,73 @@ function AddNewInterview() {
       </div>
 
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 font-sans">
           <DialogHeader>
-            <DialogTitle className="text-2xl">
+            <DialogTitle className="text-3xl font-extrabold text-black dark:text-white">
               Tell us more about your job interviewing
             </DialogTitle>
-            <DialogDescription>
+            <DialogDescription className="text-gray-600 dark:text-gray-300">
               Fill in the details below to generate your mock interview.
             </DialogDescription>
           </DialogHeader>
 
-          {/* Form is outside DialogDescription to fix nesting issue */}
           <form onSubmit={onSubmit}>
-            <div className="mt-4">
-              <label>Job Role/Job Position</label>
+            <div className="mt-6">
+              <label className="block text-sm font-medium text-black dark:text-white mb-2">
+                Job Role/Job Position
+              </label>
               <Input
                 placeholder="Ex. Full Stack Developer"
                 required
                 onChange={(e) => setJobPosition(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 bg-white text-black placeholder-gray-400 focus:ring-2 focus:ring-green-300 focus:border-green-500/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 transition-all duration-300"
               />
             </div>
 
-            <div className="my-3">
-              <label>Job Description/ Tech Stack (In Short)</label>
+            <div className="my-4">
+              <label className="block text-sm font-medium text-black dark:text-white mb-2">
+                Job Description/Tech Stack (In Short)
+              </label>
               <Textarea
                 placeholder="Ex. React, Angular, NodeJs, MySql etc"
                 required
                 onChange={(e) => setJobDesc(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 bg-white text-black placeholder-gray-400 focus:ring-2 focus:ring-green-300 focus:border-green-500/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 transition-all duration-300"
               />
             </div>
 
-            <div className="my-3">
-              <label>Years of experience</label>
+            <div className="my-4">
+              <label className="block text-sm font-medium text-black dark:text-white mb-2">
+                Years of Experience
+              </label>
               <Input
                 placeholder="Ex. 5"
                 type="number"
                 max="100"
                 required
                 onChange={(e) => setJobExperience(e.target.value)}
+                className="w-full rounded-xl border border-gray-200 bg-white text-black placeholder-gray-400 focus:ring-2 focus:ring-green-300 focus:border-green-500/20 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-500 transition-all duration-300"
               />
             </div>
 
-            <div className="flex gap-5 justify-end mt-6">
+            <div className="flex gap-6 justify-end mt-8">
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => setOpenDialog(false)}
+                className="py-3 px-8 text-black dark:text-white border border-gray-200 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={loading}>
+              <Button
+                type="submit"
+                disabled={loading}
+                className="py-3 px-8 bg-orange-500 text-white rounded-xl shadow-lg hover:bg-orange-600 focus:ring-4 focus:ring-orange-300 dark:focus:ring-orange-900 transition-all duration-300"
+              >
                 {loading ? (
                   <>
-                    <LoaderCircle className="animate-spin" /> Generating from AI
+                    <LoaderCircle className="animate-spin mr-2 h-5 w-5" />
+                    Generating from AI
                   </>
                 ) : (
                   "Start Interview"
